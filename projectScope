@@ -1,0 +1,10 @@
+Restaurant random selection application side project 28-1-2022 
+
+
+- Restful back-end with mongoDB (TODO)
+
+- GraphQL for handle api call 
+
+- PostMan for post json for adding rest info
+
+- (option) react UI for front-end

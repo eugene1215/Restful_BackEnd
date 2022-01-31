@@ -2,11 +2,10 @@ package com.example.microservice.services;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
-import com.example.microservice.model.Restaurant;
+import com.example.microservice.model.RestaurantInfo;
 
 @Component
 public class RestaurantService {
@@ -15,23 +14,24 @@ public class RestaurantService {
 	
 
 
-	public Restaurant createRestaurant(int id, Restaurant restaurant) {
+	public RestaurantInfo createRestaurant(int id, RestaurantInfo restaurant) {
 //		Restaurant restaurant = new Restaurant("", 0, "", 0);
 //		restaurant.setName(name);
 //		restaurant.setId(id);
 //		restaurant.setDescription(description);
 //		restaurant.setRate(rate);
 		int randomId = new BigInteger(130, random).intValue();
-		restaurant.setId(randomId);
+		restaurant.setrestId(randomId);
 
 		
 		return restaurant;
 	}
-	public ArrayList<Restaurant> retrieveAllRestaurant() {
-		ArrayList<Restaurant> restaurants = new ArrayList<>();
-//		restaurants.add(null)
-		return restaurants;
-	}
+//	public String> retrieveAllRestaurant() {
+//		ArrayList<Restaurant> restaurants = new ArrayList<>();
+////		restaurants.add(null)
+//		MongoClient mongoClient
+//		return ;
+//	}
 	
 //	private static ArrayList<Restaurant> restaurants = new ArrayList<>();
 ////static {
