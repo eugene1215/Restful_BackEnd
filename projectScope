@@ -1,5 +1,10 @@
 Restaurant random selection application side project 28-1-2022 
 
+using mircoservice concept 
+ tier 1 -> postman(react app)
+ tier 2 -> empty (not yet design..)
+ tier 3 -> java -> Mongodb
+
 
 - Restful back-end with mongoDB (TODO)
 	1. get full list of Rest (Done)
