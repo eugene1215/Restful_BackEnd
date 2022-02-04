@@ -1,43 +1,52 @@
 package com.example.microservice.services;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.microservice.dao.DBConnection;
 import com.example.microservice.model.RestaurantInfo;
+import com.google.gson.Gson;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.Projections;
 
 @Component
 public class RestaurantService {
+	@Autowired
+//	private RestaurantService restaurantService;
+	private DBConnection dbConnection;
 
-	private SecureRandom random = new SecureRandom();
-	
+	Gson gson = new Gson();
 
+	public RestaurantInfo addRestaurant(RestaurantInfo rest) {
+		RestaurantInfo restaurant = new RestaurantInfo();
+		restaurant.setRestName(rest.getRestName());
+		restaurant.setRestId(rest.getRestId());
+		restaurant.setRestDescription(rest.getRestDescription());
+		restaurant.setRestRate(rest.getRestRate());
 
-	public RestaurantInfo createRestaurant(int id, RestaurantInfo restaurant) {
-//		Restaurant restaurant = new Restaurant("", 0, "", 0);
-//		restaurant.setName(name);
-//		restaurant.setId(id);
-//		restaurant.setDescription(description);
-//		restaurant.setRate(rate);
-		int randomId = new BigInteger(130, random).intValue();
-		restaurant.setrestId(randomId);
-
-		
 		return restaurant;
 	}
-//	public String> retrieveAllRestaurant() {
-//		ArrayList<Restaurant> restaurants = new ArrayList<>();
-////		restaurants.add(null)
-//		MongoClient mongoClient
-//		return ;
-//	}
-	
-//	private static ArrayList<Restaurant> restaurants = new ArrayList<>();
-////static {
-//	Restaurant rest = new Restaurant("", 01, "", 5);
-//	restaurants.add(rest);
-////}
-	
-	
+
+	public List<RestaurantInfo> retrieveAllRestaurant() {
+		Bson bson = Projections.fields(Projections.include("_id", "restId", "restName", "restDescription", "restRate"));
+		MongoCursor<Document> cursor = dbConnection.collection.find().projection(bson).iterator();
+		RestaurantInfo info = new RestaurantInfo();
+		List<RestaurantInfo> list = new ArrayList<RestaurantInfo>();
+		try {
+			while (cursor.hasNext()) {
+				info = gson.fromJson(cursor.next().toJson(), RestaurantInfo.class);
+				list.add(info);
+			}
+
+		} finally {
+			cursor.close();
+		}
+		return list;
+	}
+
 }

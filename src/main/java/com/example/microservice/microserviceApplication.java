@@ -10,9 +10,7 @@ public class microserviceApplication {
 	public static void main(String[] args) {
 //		 System.out.println("version: " + SpringVersion.getVersion());
 
-		
 		SpringApplication.run(microserviceApplication.class, args);
 	}
 
-	
 }

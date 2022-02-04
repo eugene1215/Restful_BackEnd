@@ -1,15 +1,12 @@
 package com.example.microservice.model;
 
-import org.springframework.data.annotation.Id;
-
 public class RestaurantInfo {
 //	@Id private String id; // for mongob object id
-	
+
 	private String restName;
 	private int restId;
 	private String restDescription;
 	private int restRate;
-	
 
 	public RestaurantInfo(String restName, int restId, String restDescription, int restRate) {
 		super();
@@ -18,42 +15,50 @@ public class RestaurantInfo {
 		this.restDescription = restDescription;
 		this.restRate = restRate;
 	}
-public RestaurantInfo() {
+
+	public RestaurantInfo() {
 		// TODO Auto-generated constructor stub
 	}
-	//	public Task() {
+
+	// public Task() {
 //		// TODO Auto-generated constructor stub
 //	}
-	public String getrestName() {
+	public String getRestName() {
 		return restName;
 	}
-	public void setrestName(String restName) {
+
+	public void setRestName(String restName) {
 		this.restName = restName;
 	}
-	public int getrestId() {
+
+	public int getRestId() {
 		return restId;
 	}
-	public void setrestId(int restId) {
+
+	public void setRestId(int restId) {
 		this.restId = restId;
 	}
-	public String getDescription() {
+
+	public String getRestDescription() {
 		return restDescription;
 	}
-	public void setDescription(String restDescription) {
+
+	public void setRestDescription(String restDescription) {
 		this.restDescription = restDescription;
 	}
-	
-	public int getRate() {
+
+	public int getRestRate() {
 		return restRate;
 	}
-	public void setRate(int restRate) {
+
+	public void setRestRate(int restRate) {
 		this.restRate = restRate;
 	}
+
 	@Override
 	public String toString() {
-		return "Restaurant [restName=" + restName + ", restId=" + restId + ", restDescription=" + restDescription + ", restRate=" + restRate + "]";
+		return "Restaurant [restName=" + restName + ", restId=" + restId + ", restDescription=" + restDescription
+				+ ", restRate=" + restRate + "]";
 	}
-	
-	
-	
+
 }
