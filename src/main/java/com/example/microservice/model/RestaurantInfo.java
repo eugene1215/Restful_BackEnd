@@ -3,7 +3,7 @@ package com.example.microservice.model;
 import org.springframework.data.annotation.Id;
 
 public class RestaurantInfo {
-	@Id private String id; // for mongob object id
+//	@Id private String id; // for mongob object id
 	
 	private String restName;
 	private int restId;
@@ -18,7 +18,10 @@ public class RestaurantInfo {
 		this.restDescription = restDescription;
 		this.restRate = restRate;
 	}
-//	public Task() {
+public RestaurantInfo() {
+		// TODO Auto-generated constructor stub
+	}
+	//	public Task() {
 //		// TODO Auto-generated constructor stub
 //	}
 	public String getrestName() {

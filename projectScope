@@ -2,6 +2,10 @@ Restaurant random selection application side project 28-1-2022
 
 
 - Restful back-end with mongoDB (TODO)
+	1. get full list of Rest (Done)
+	2. post rest info
+	3. editable rest info
+	
 
 - GraphQL for handle api call 
 
