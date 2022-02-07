@@ -10,6 +10,9 @@ using mircoservice concept
 	1. get full list of Rest (Done)
 	2. add new restaurant (Done)
 	3. editable rest info
+		- search rest by id (Done)
+		- delete rest by id (Done)
+		- update rest info by id 
 	
 
 - GraphQL for handle api call 

@@ -1,9 +1,7 @@
 package com.example.microservice.controller;
 
-import com.example.microservice.dao.DBConnection;
 import com.example.microservice.model.RestaurantInfo;
 import com.example.microservice.services.RestaurantService;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -19,8 +17,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bson.Document;
 
-import com.mongodb.client.result.InsertOneResult;
-
 @Configuration
 @ComponentScan
 @RestController
@@ -29,35 +25,31 @@ public class RestaurantController {
 
 	@Autowired
 	private RestaurantService restaurantService;
-	@Autowired
-	private DBConnection dbConnection;
 
 	@PostMapping("/createRest")
 	public String createRestaurant(@NonNull @RequestBody RestaurantInfo newaddRestaurant) {
-
 		if (restaurantService.checkRestInfo(newaddRestaurant)) {
-
-			try {
-				Gson gson = new Gson();
-				String json = gson.toJson(restaurantService.addRestaurant(newaddRestaurant));
-				Document doc = Document.parse(json);
-				InsertOneResult result = dbConnection.collection.insertOne(doc);
-
-				log.info("*** Insert successful" + result);
-			}
-
-			catch (Exception e) {
-				log.info("*** Insert failed!!!" + e);
-			}
+			restaurantService.insertDB(newaddRestaurant);
 		}
 
 		return "Done";
 	}
 
 	@GetMapping("/")
-	public List<RestaurantInfo> index() {
-
+	public List<RestaurantInfo> listAllRestaurant() {
 		return restaurantService.retrieveAllRestaurant();
+	}
+
+	@PostMapping("/rest/{id}")
+	public Document retrieveRestaurant(@RequestBody RestaurantInfo newaddRestaurant) {
+//		@PathVariable Long id
+		return restaurantService.retrieveRestaurant(newaddRestaurant.getRestId());
+	}
+
+	@PostMapping("/deleteRest/{id}")
+	public String deleteRestaurant(@RequestBody RestaurantInfo newaddRestaurant) {
+		restaurantService.deleteRestaurant(newaddRestaurant.getRestId());
+		return "Done";
 	}
 
 }
