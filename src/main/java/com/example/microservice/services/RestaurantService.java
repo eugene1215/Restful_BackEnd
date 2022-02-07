@@ -3,11 +3,14 @@ package com.example.microservice.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.microservice.controller.RestaurantController;
 import com.example.microservice.dao.DBConnection;
 import com.example.microservice.model.RestaurantInfo;
 import com.google.gson.Gson;
@@ -16,11 +19,22 @@ import com.mongodb.client.model.Projections;
 
 @Component
 public class RestaurantService {
+	private static final Log log = LogFactory.getLog(RestaurantController.class);
+	
 	@Autowired
-//	private RestaurantService restaurantService;
 	private DBConnection dbConnection;
 
 	Gson gson = new Gson();
+	
+	public boolean checkRestInfo(RestaurantInfo newaddRestaurant) {
+		if (newaddRestaurant.getRestId() == "" 
+				|| newaddRestaurant.getRestName() == ""
+				|| newaddRestaurant.getRestRate() < 0) {
+			log.error("Misssing Info... " + newaddRestaurant);
+			return false;
+	}
+		return true;
+		}
 
 	public RestaurantInfo addRestaurant(RestaurantInfo rest) {
 		RestaurantInfo restaurant = new RestaurantInfo();
@@ -28,7 +42,7 @@ public class RestaurantService {
 		restaurant.setRestId(rest.getRestId());
 		restaurant.setRestDescription(rest.getRestDescription());
 		restaurant.setRestRate(rest.getRestRate());
-
+		log.info(restaurant);
 		return restaurant;
 	}
 

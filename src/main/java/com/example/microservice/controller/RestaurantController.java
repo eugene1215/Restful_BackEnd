@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,25 +32,26 @@ public class RestaurantController {
 	@Autowired
 	private DBConnection dbConnection;
 
-	Gson gson = new Gson();
-
 	@PostMapping("/createRest")
-	public String createRestaurant(@RequestBody RestaurantInfo newaddRestaurant) {
-		try {
-			String json = gson.toJson(restaurantService.addRestaurant(newaddRestaurant));
-			Document doc = Document.parse(json);
-			InsertOneResult result = dbConnection.collection.insertOne(doc);
+	public String createRestaurant(@NonNull @RequestBody RestaurantInfo newaddRestaurant) {
 
-//		return createRestaurant(newaddRestaurant);
-			log.info("*** Insert successful" + "\n" + result);
-		}
+		if (restaurantService.checkRestInfo(newaddRestaurant)) {
 
-		catch (Exception e) {
-			log.info("*** Insert failed!!!" + "\n" + e);
+			try {
+				Gson gson = new Gson();
+				String json = gson.toJson(restaurantService.addRestaurant(newaddRestaurant));
+				Document doc = Document.parse(json);
+				InsertOneResult result = dbConnection.collection.insertOne(doc);
+
+				log.info("*** Insert successful" + result);
+			}
+
+			catch (Exception e) {
+				log.info("*** Insert failed!!!" + e);
+			}
 		}
 
 		return "Done";
-
 	}
 
 	@GetMapping("/")
