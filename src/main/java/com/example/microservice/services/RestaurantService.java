@@ -40,6 +40,7 @@ public class RestaurantService {
 	}
 
 	public void insertDB(RestaurantInfo newaddRestaurant) {
+		
 		try {
 			// convertJson2Doc
 			String json = gson.toJson(addRestaurant(newaddRestaurant));
@@ -80,7 +81,7 @@ public class RestaurantService {
 
 	public Document retrieveRestaurant(String id) {
 		Bson bson = Projections.fields(Projections.include("restId", "restName", "restDescription", "restRate"));
-		Document doc = dbConnection.collection.find(eq("restId", Integer.valueOf(id))).projection(bson).first();
+		Document doc = dbConnection.collection.find(eq("restId", id)).projection(bson).first();
 		if (doc == null) {
 			log.info("* restId can not be null or item not exist!!! " + doc);
 //			ResponseEntity.notFound();
@@ -91,7 +92,7 @@ public class RestaurantService {
 	}
 	
 	public void deleteRestaurant(String id) {
-		Bson bson = eq("restId", Integer.valueOf(id));
+		Bson bson = eq("restId", id);
 		 try {
              DeleteResult result = dbConnection.collection.deleteOne(bson);
              log.info("Deleted document count: " + result.getDeletedCount() + "\n" + "** " + bson);
