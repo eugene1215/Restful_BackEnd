@@ -1,15 +1,19 @@
 package com.example.microservice.model;
 
-import org.springframework.lang.NonNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RestaurantInfo {
 //	@Id private String id; // for mongob object id
-	@NonNull
-	private String restName;
-	@NonNull
-	private String restId;
-	private String restDescription;
-	@NonNull
+	@JsonProperty("restName")
+	private String restName = null;
+	
+	@JsonProperty("restId")
+	private String restId = null;
+	
+	@JsonProperty("restDescription")
+	private String restDescription = null;
+	
+	@JsonProperty("restRate")
 	private int restRate;
 
 	public RestaurantInfo(String restName, String restId, String restDescription, int restRate) {

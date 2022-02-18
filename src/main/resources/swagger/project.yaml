@@ -1,0 +1,47 @@
+swagger: '2.4.26'
+info:
+  title: test
+  version: 1.0.0
+  description: test
+schemes:
+  - http
+host: $(catalog.host)
+basePath: /
+produces:
+  - application/json
+tags:
+  - name: AllRestaurantEnquiry
+    description: 'All Rest Retrive'
+  - name: CreateRestaurant
+    description: 'Rest Create'
+  - name: RestaurantEnquiry
+    description: 'Rest retrive'
+
+paths:
+
+ /enquiry/allRestaurant:
+  get:
+    tags:
+    - AllRestaurantEnquiry
+    summary: 'All Rest'
+    description: get all rest
+    operationId: allRestaurant
+    consumes:
+    - application/json
+    produces:
+    - applicatiob/json
+    parameters:
+    - name: request
+      in: body
+      required: true
+      schema:
+       $ref: '#/definitions/RestaurantInfoRequest'
+    responses:
+      200:
+        description: Successful operation
+        schema:
+          $ref: '#/definitions/RestaurantInfoResponse'
+      500:
+        description: Unexpected Error
+        schema:
+          $ref: '#/definitions/BaseResponse'
