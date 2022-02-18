@@ -1,5 +1,37 @@
-{"properties": [{
-  "name": "server.setEndpoint(\"http",
-  "type": "java.lang.String",
-  "description": "A description for 'server.setEndpoint(\"http'"
-}]}
+{"properties": [
+  {
+    "name": "server.setEndpoint(\"http",
+    "type": "java.lang.String",
+    "description": "A description for 'server.setEndpoint(\"http'"
+  },
+  {
+    "name": "response.setHeader(\"Access-Control-Allow-Origin\",",
+    "type": "java.lang.String",
+    "description": "A description for 'response.setHeader(\"Access-Control-Allow-Origin\",'"
+  },
+  {
+    "name": "response.setHeader(\"Access-Control-Allow-Origin\",",
+    "type": "java.lang.String",
+    "description": "A description for 'response.setHeader(\"Access-Control-Allow-Origin\",'"
+  },
+  {
+    "name": "response.setHeader(\"Access-Control-Allow-Origin\",",
+    "type": "java.lang.String",
+    "description": "A description for 'response.setHeader(\"Access-Control-Allow-Origin\",'"
+  },
+  {
+    "name": "response.setHeader(\"Access-Control-Allow-Origin\",",
+    "type": "java.lang.String",
+    "description": "A description for 'response.setHeader(\"Access-Control-Allow-Origin\",'"
+  },
+  {
+    "name": "response.setHeader(\"Access-Control-Allow-Origin\",",
+    "type": "java.lang.String",
+    "description": "A description for 'response.setHeader(\"Access-Control-Allow-Origin\",'"
+  },
+  {
+    "name": "export",
+    "type": "java.lang.String",
+    "description": "A description for 'export'"
+  }
+]}

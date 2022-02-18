@@ -1,7 +1,7 @@
 {
-    "restId": 101,
+    "restId": "101",
   "restName": "PostTest",
   "restDescription": "good",
-  "restRate": 101
+  "restRate": "101"
 
 }
