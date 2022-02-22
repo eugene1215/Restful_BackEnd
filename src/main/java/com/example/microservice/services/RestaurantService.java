@@ -4,6 +4,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -53,9 +54,11 @@ public class RestaurantService {
 	}
 
 	public RestaurantInfo addRestaurant(RestaurantInfo rest) {
+		Random random = new Random();
+		int number = random.nextInt(100000);
 		RestaurantInfo restaurant = new RestaurantInfo();
 		restaurant.setRestName(rest.getRestName());
-		restaurant.setRestId(rest.getRestId());
+		restaurant.setRestId(Integer.toString(number));
 		restaurant.setRestDescription(rest.getRestDescription());
 		restaurant.setRestRate(rest.getRestRate());
 		log.info(restaurant);
