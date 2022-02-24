@@ -32,8 +32,7 @@ public class RestaurantService {
 	Gson gson = new Gson();
 
 	public boolean checkRestInfo(RestaurantInfo newaddRestaurant) {
-		if (newaddRestaurant.getRestId() == "" || newaddRestaurant.getRestName() == ""
-				|| newaddRestaurant.getRestRate() < 0) {
+		if ( newaddRestaurant.getRestName() == "" || newaddRestaurant.getRestRate() < 0) {
 			log.error("Misssing Info... " + newaddRestaurant);
 			return false;
 		}
